@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block body %}
+{% include "navbar.html" %}
+<div class="container">
+  <div class="blog-header">
+    <h1 class="blog-title">흐킈의 Blog</h1>
+    <p class="lead blog-description">The First Blog Created by CreaM</p>
+  </div>
+  <div class = "row">
+    <div class="col-sm-8">
+      <div class = "blog-post">
+        {% for article in article_list %}
+        <h2 class="blog-post-title">
+            <a href="{{article.id}}">
+              {{article.title}}
+            </a>
+        </h2>
+        <p>{{article.content}}</p>
+        {% endfor %}
+      </div>
+    </div>
+    <div class = "col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module">
+        <h4>Categories</h4>
+        <ol class="list-unstyled">
+          <li><a href="/">all</a></li>
+          {% for alias, category in category_list %}
+            <li><a href="/?category={{ alias }}">{{ category }}</a></li>
+          {% endfor %}
+        </ol>
+      </div>
+      <div class="sidebar-module">
+        <h4>Hashtags</h4>
+        <ol class="list-unstyled">
+          {% for hashtag in hashtag_list %}
+            <li><a href="/?hashtag={{ hashtag.name }}">#{{ hashtag }}</a></li>
+          {% endfor %}
+        </ol>
+      </div>
+      col-sm-4
+    </div>
+  </div>
+</div>
+{% endblock %}
